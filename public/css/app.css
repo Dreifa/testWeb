@@ -22841,12 +22841,12 @@ select {
 
 .text-gray-600 {
   --tw-text-opacity: 1;
-  color: rgba(75, 85, 99, var(--tw-text-opacity));
+  color: rgba(107, 114, 128, var(--tw-text-opacity));
 }
 
 .text-gray-700 {
   --tw-text-opacity: 1;
-  color: rgba(55, 65, 81, var(--tw-text-opacity));
+  color: rgba(107, 114, 128, var(--tw-text-opacity));
 }
 
 .text-gray-800 {
@@ -22856,7 +22856,7 @@ select {
 
 .text-gray-900 {
   --tw-text-opacity: 1;
-  color: rgba(17, 24, 39, var(--tw-text-opacity));
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
 }
 
 .text-red-50 {
@@ -188567,3 +188567,8 @@ select {
     color:rgb(209, 207, 207);
 }
 body { background: url(https://c.wallhere.com/photos/ec/1f/anime_anime_girls_illustration_fan_art_manga_boobs_minimalism_monochrome-1579535.jpg!d); }
+
+.my-conteiner{
+  width: 800px;
+  @include make-container();
+}

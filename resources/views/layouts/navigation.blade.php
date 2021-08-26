@@ -16,7 +16,7 @@
                         {{ __('Главная') }}
                     </x-nav-link>
                     <x-nav-link :href="route('order')" :active="request()->routeIs('order')">
-                        {{ __('Заказ') }}
+                        {{ __('Заявка') }}
                     </x-nav-link>
                     <x-nav-link :href="route('members')" :active="request()->routeIs('members')">
                         {{ __('Книги') }}
@@ -47,7 +47,7 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('Выйти') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>

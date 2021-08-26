@@ -34,8 +34,11 @@ Route::post('/order/check', [MainController::class,'order_check']);
 Route::get('/member/check', [MainController::class,'member_check'])
                                                                 ->name('member_check');
 
+Route::get('/userNotFound', function () {
+    return view('userNotFound');
+})->name('userNotFound');
+
 Route::get('/dashboard', function () {
-    //return auth()->user()->email;
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
