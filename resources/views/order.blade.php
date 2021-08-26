@@ -3,7 +3,12 @@
 @section('title')Книги@endsection 
 
 @section('main_content')
-<div class="container col-xxl-8 px-4 py-5 text-white">
+<x-app-layout>
+    <x-slot name="header">
+
+    </x-slot>
+    
+    <div class="container col-xxl-8 px-4 py-5 text-white">
     @if($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -26,4 +31,5 @@
         <button id="orderBtn" type="submit" class="btn btn-success">Заказать</button>
     </form>
 </div>
+</x-app-layout>  
 @endsection

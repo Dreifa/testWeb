@@ -3,7 +3,14 @@
 @section('title')Главная страница@endsection 
 
 @section('main_content')
-<div class="container col-xxl-8 px-4 py-5">
+<!--------------------------------------------------------------------------------------------------------->
+
+<x-app-layout>
+    <x-slot name="header">
+
+    </x-slot>
+    
+    <div class="container col-xxl-8 px-4 py-5">
     <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
       <div class="col-10 col-sm-8 col-lg-6">
        <!-- <img src="https://www.stylist.co.uk/images/app/uploads/2019/12/17162852/the-end-of-a-book-1268x845.jpeg?w=1200&h=1&fit=max&auto=format%2Ccompress" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy"> -->
@@ -20,4 +27,25 @@
       </div>
     </div>
   </div>
+</x-app-layout>      
+
+<!--------------------------------------------------------------------------------------------------------->
+
+@if (Route::has('login'))
+                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                    @auth
+                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
+                    @else
+                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
+
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
+          
+<!--------------------------------------------------------------------------------------------------------->
+
+
 @endsection

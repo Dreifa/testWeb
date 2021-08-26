@@ -2,30 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\LibraryModel;
-use App\Models\OrderModel;
+use App\Models\Book;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\LoginRequest;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Auth;
 
 class MainController extends Controller
 {
     public function home() {
-        return view(view:'home');
+        return view('home');
     }
 
     public function members() {
-        $members = new LibraryModel();
+        $members = new Book();
         $books = DB::table('books')
-                    ->join('members', 'books.member_id', '=', 'members.id')
-                    ->select('members.id', 'member_id', 'lstName', 'frstName', 'author', 'book') 
-                    ->orderBy('lstName')
+                    ->join('users', 'books.member_id', '=', 'users.id')
+                    ->select('books.id', 'member_id', 'name', 'email', 'author', 'book') 
+                    ->orderBy('name')
                     ->get();
         return view('members', ['books' => $books->all()]);
     }
 
     public function order() {
-        return view(view:'order');
+        return view('order');
     }
 
     public function order_check(Request $request) {
@@ -35,24 +39,25 @@ class MainController extends Controller
             'author' => 'required|min:4|max:50',
             'book' => 'required|min:4|max:50'
         ]);
-        $library = new LibraryModel();
-        $library->lstName = $request->input(key: 'lstName');
-        $library->frstName = $request->input(key: 'frstName');
-        $library->save();
-        $book = new OrderModel();
-        $book->author = $request->input(key: 'author');
-        $book->book = $request->input(key: 'book');
-        $cur_member_id = $library->id;
+        /*$library = new User();
+        $library->lstName = $request->input('lstName');
+        $library->frstName = $request->input('frstName');
+        $library->save();*/
+        $book = new Book();
+        $book->author = $request->input('author');
+        $book->book = $request->input('book');
+        $cur_member_id = Auth::user()->id;
+        //$cur_member_id = $library->id;
         $book->member_id = $cur_member_id;
         $book->save();
-        return redirect()->route(route: 'home');
+        return redirect()->route('home');
         //TODO: Добавить заглушку: книга успешно заказана с кнопкой "на главную" 
     }
 
     public function member_check(Request $id) {
         $id = key($id->all());
-        DB::table('books')->where('member_id', '=', $id)->delete();
-        DB::table('members')->where('id', '=', $id)->delete();
-        return redirect()->route(route: 'home');
+        DB::table('books')->where('id', '=', $id)->delete();
+        //DB::table('members')->where('id', '=', $id)->delete();
+        return redirect()->route('home');
     }
 }

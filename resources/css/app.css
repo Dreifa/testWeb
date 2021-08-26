@@ -1,6 +1,3 @@
-.my-input{
-    background-color: rgb(126, 126, 126); 
-}
-.my-input::placeholder{
-    color:rgb(209, 207, 207);
-}
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';

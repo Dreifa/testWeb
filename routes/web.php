@@ -14,13 +14,32 @@ use App\Http\Controllers\MainController;
 |
 */
 
-Route::get('/', [MainController::class,'home'])->name(name: 'home');
+//Route::get('/', [MainController::class,'home'])->name('home');
 
-Route::get('/order', [MainController::class,'order'])->name(name: 'order');
+Route::get('/', function () {
+    //return auth()->user()->email;
+    return view('home');
+})->middleware(['auth'])->name('home');
 
-Route::get('/members', [MainController::class,'members'])->name(name: 'members');
+Route::get('/order', [MainController::class,'order'])
+                                                    ->middleware(['auth'])
+                                                    ->name('order');
+
+Route::get('/members', [MainController::class,'members'])
+                                                        ->middleware(['auth'])
+                                                        ->name('members');
 
 Route::post('/order/check', [MainController::class,'order_check']);
 
-Route::get('/member/check', [MainController::class,'member_check'])->name(name: 'member_check');
+Route::get('/member/check', [MainController::class,'member_check'])
+                                                                ->name('member_check');
+
+Route::get('/dashboard', function () {
+    //return auth()->user()->email;
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+
+
+require __DIR__.'/auth.php';
 
