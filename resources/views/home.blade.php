@@ -25,13 +25,12 @@
         <a href="/members" class="btn btn-outline-secondary btn-lg px-4" role="button" aria-pressed="true">Заказы</a>
         </div>
       </div>
-        <div id="app">
-          <slider></slider>
-        </div>
     </div>
   </div>
-
+    <div id="app">
+      <slider></slider>
+    </div>
 </x-app-layout>      
 
-
+<script src="./js/app.js"></script>
 @endsection

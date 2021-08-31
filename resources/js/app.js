@@ -29,10 +29,4 @@ Vue.component('slider', require('./components/Slider.vue').default);
 
 const app = new Vue({
     el: '#app',
-    data: {
-        imgVisibility: false
-    },
-    methods: {
-
-    }
 });
