@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -32,6 +33,8 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        Log::info('User = '.Auth::user()->name.' id = '.Auth::user()->id.' just login');
+
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
@@ -43,6 +46,9 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request)
     {
+
+        Log::info('User = '.Auth::user()->name.' id = '.Auth::user()->id.' just logout');
+
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
